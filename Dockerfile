@@ -4,10 +4,10 @@
 FROM docker.io/python:3.11.3-slim-bullseye
 
 LABEL org.opencontainers.image.authors="FNNDSC <dev@babyMRI.org>" \
-      org.opencontainers.image.title="ChRIS Plugin Title" \
-      org.opencontainers.image.description="A ChRIS plugin that..."
+      org.opencontainers.image.title="Surface Data Registration" \
+      org.opencontainers.image.description="ChRIS plugin wrapper for bestsurfreg.pl and surface-resample"
 
-WORKDIR /usr/local/src/app
+WORKDIR /usr/local/src/pl-bestsurfreg-surface-resample
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
@@ -16,4 +16,4 @@ COPY . .
 ARG extras_require=none
 RUN pip install ".[${extras_require}]"
 
-CMD ["commandname"]
+CMD ["bsr2"]

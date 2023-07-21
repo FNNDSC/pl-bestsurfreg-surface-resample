@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from app import parser, main
+from bsr2 import parser, main
 
 
 def test_main(tmp_path: Path):
