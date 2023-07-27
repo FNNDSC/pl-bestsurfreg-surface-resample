@@ -25,7 +25,7 @@ from bestsurfreg.params import parser
 def main(options, inputdir: Path, outputdir: Path):
     print(DISPLAY_TITLE, flush=True)
     if options.copy:
-        shutil.copytree(inputdir, outputdir)
+        shutil.copytree(inputdir, outputdir, dirs_exist_ok=True)
 
     try:
         template_surface = find_template(options.target, inputdir)
