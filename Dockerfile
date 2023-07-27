@@ -1,19 +1,14 @@
-# Python version can be changed, e.g.
-# FROM python:3.8
-# FROM docker.io/fnndsc/conda:python3.10.2-cuda11.6.0
-FROM docker.io/python:3.11.3-slim-bullseye
+FROM docker.io/fnndsc/pl-bestsurfreg-surface-resample:base-1
 
 LABEL org.opencontainers.image.authors="FNNDSC <dev@babyMRI.org>" \
       org.opencontainers.image.title="Surface Data Registration" \
       org.opencontainers.image.description="ChRIS plugin wrapper for bestsurfreg.pl and surface-resample"
 
-WORKDIR /usr/local/src/pl-bestsurfreg-surface-resample
+COPY ./fetal-template-29 $MNI_DATAPATH/fetal-template-29
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY . .
+COPY . /usr/local/src/pl-bestsurfreg-surface-resample
 ARG extras_require=none
-RUN pip install ".[${extras_require}]"
+RUN pip install "/usr/local/src/pl-bestsurfreg-surface-resample[${extras_require}]" \
+    && rm -rf /usr/local/src/pl-bestsurfreg-surface-resample
 
-CMD ["bsr2"]
+CMD ["bsrr"]

@@ -20,17 +20,17 @@ def get_version(rel_path: str) -> str:
 
 setup(
     name='bestsurfreg-surface-resample',
-    version=get_version('bsr2.py'),
+    version=get_version('bestsurfreg/__init__.py'),
     description='ChRIS plugin wrapper for bestsurfreg.pl and surface-resample',
     author='FNNDSC',
-    author_email='dev@babyMRI.org',
+    author_email='Jennings.Zhang@childrens.harvard.edu',
     url='https://github.com/FNNDSC/pl-bestsurfreg-surface-resample',
-    py_modules=['bsr2'],
-    install_requires=['chris_plugin'],
+    packages=['bestsurfreg'],
+    install_requires=['chris_plugin~=0.2.0', 'colorama~=0.4.6'],
     license='MIT',
     entry_points={
         'console_scripts': [
-            'bsr2 = bsr2:main'
+            'bsrr = bestsurfreg.__main__:main'
         ]
     },
     classifiers=[
